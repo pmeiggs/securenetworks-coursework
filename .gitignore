@@ -1,0 +1,22 @@
+cat << 'EOF' > .gitignore
+# C build outputs
+*.o
+*.out
+*.exe
+bankersalgo
+
+# Python cache
+__pycache__/
+*.py[cod]
+.venv/
+
+# Generated runtime artifacts (keys, certs, test QRs)
+*.pem
+*.key
+*.crt
+ticket.png
+
+# OS files
+.DS_Store
+Thumbs.db
+EOF
