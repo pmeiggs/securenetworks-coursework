@@ -117,8 +117,15 @@ int need[P][R];
 
 void calculateNeed(void)
 {
-    /* TODO 1: Write your code here */
+    for (int i = 0; i < P; i++)
+    {
+        for (int j = 0; j < R; j++)
+        {
+            need[i][j] = maximum[i][j] - allocation[i][j];
+        }
+    }
 }
+
 
 /* =================================================
    TODO 2: SYSTEM STATE VALIDATION (6 MARKS)
@@ -134,10 +141,43 @@ void calculateNeed(void)
 
 int validateState(void)
 {
-    /* TODO 2: Write your code here */
+    int validateState(void)
+{
+    /* Check available resources are non-negative */
+    for (int i = 0; i < R; i++)
+    {
+        if (available[i] < 0)
+            return 0;
+    }
 
-    return 0;
+    /* Check allocation does not exceed maximum */
+    for (int i = 0; i < P; i++)
+    {
+        for (int j = 0; j < R; j++)
+        {
+            if (allocation[i][j] > maximum[i][j])
+                return 0;
+        }
+    }
+
+    /* Check available + allocated = total */
+    for (int j = 0; j < R; j++)
+    {
+        int sum = 0;
+
+        for (int i = 0; i < P; i++)
+        {
+            sum += allocation[i][j];
+        }
+
+        if (sum + available[j] != total[j])
+            return 0;
+    }
+
+    return 1;
 }
+    return 0;
+
 
 /* =================================================
    TODO 3: BANKER'S SAFETY ALGORITHM (12 MARKS)
